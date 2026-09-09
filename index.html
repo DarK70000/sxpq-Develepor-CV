@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="sxpq — beginner Java & Minecraft developer">
+<title>sxpq — Developer Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root{
+  --bg:#2b1d17;
+  --paper:#f3e4d2;
+  --ink:#241710;
+  --muted:#c3aa91;
+  --line:#50372a;
+  --accent:#c58b62;
+  --accent2:#e6c2a5;
+  --card:#35251d;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--paper);
+  font-family:"Space Grotesk",system-ui,sans-serif;
+  overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.28;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}
+
+/* top */
+header{padding:28px 0;position:absolute;top:0;left:0;right:0;z-index:10}
+.nav{display:flex;align-items:center;justify-content:space-between}
+.wordmark{font-size:22px;letter-spacing:.28em;font-weight:600}
+.navlinks{display:flex;gap:26px;color:var(--muted);font-size:13px}
+.navlinks a{transition:.2s}
+.navlinks a:hover{color:var(--paper)}
+
+.hero{
+  min-height:86vh;display:grid;grid-template-columns:1.35fr .65fr;
+  gap:28px;align-items:end;padding:130px 0 55px;
+}
+.hero-copy{padding:30px 0}
+.kicker{
+  display:inline-flex;align-items:center;gap:9px;color:var(--accent);
+  font:500 12px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.12em;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent)}
+h1{
+  font-size:clamp(64px,10vw,125px);line-height:.78;letter-spacing:-.075em;
+  margin:28px 0 34px;font-weight:600;
+}
+.hero-title{font-size:clamp(21px,3vw,34px);max-width:720px;line-height:1.12}
+.hero-title span{color:var(--accent)}
+.hero-text{max-width:620px;color:var(--muted);line-height:1.8;margin-top:22px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border:1px solid var(--line);
+  border-radius:999px;font-size:13px;font-weight:600;transition:.2s;background:#120e0b;
+}
+.btn:hover{transform:translateY(-2px);border-color:#57483b}
+.btn.primary{background:var(--accent);color:#180e06;border-color:var(--accent)}
+
+.identity{
+  background:var(--paper);color:var(--ink);border-radius:28px;padding:28px;
+  min-height:285px;display:flex;flex-direction:column;justify-content:space-between;
+  transform:rotate(1deg);box-shadow:18px 22px 0 rgba(255,138,42,.13);
+}
+.id-top{display:flex;justify-content:space-between;align-items:flex-start}
+.monogram{
+  width:64px;height:64px;border:2px solid var(--ink);border-radius:18px;
+  display:grid;place-items:center;font-size:24px;font-weight:700;
+}
+.stamp{font:500 10px "DM Mono",monospace;border:1px solid #7d6e5d;padding:7px 9px;border-radius:999px}
+.identity h2{font-size:31px;margin:0 0 4px}
+.identity .role{font:500 12px "DM Mono",monospace;color:#725f4b}
+.id-list{display:grid;gap:10px;font-size:13px}
+.id-row{display:flex;justify-content:space-between;border-bottom:1px solid #d1c4b3;padding-bottom:9px}
+.id-row span:first-child{color:#806f5b}
+.id-foot{font:500 11px "DM Mono",monospace;display:flex;justify-content:space-between}
+
+/* sections */
+section{padding:55px 0;border-top:1px solid var(--line)}
+.section-label{color:var(--accent);font:500 11px "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase}
+.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin:10px 0 34px}
+.section-head h2{font-size:clamp(38px,5vw,62px);letter-spacing:-.05em;margin:0}
+.section-head p{max-width:380px;color:var(--muted);line-height:1.7;margin:0}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.big-card,.small-card{
+  border:1px solid var(--line);border-radius:22px;background:var(--card);padding:28px;
+}
+.big-card{min-height:220px}
+.big-card p{font-size:21px;line-height:1.55;margin:0;color:#d8cec0}
+.big-card p em{color:var(--accent);font-style:normal}
+.small-card{display:flex;flex-direction:column;justify-content:space-between;min-height:145px}
+.small-card h3{margin:0;font-size:16px}
+.small-card p{color:var(--muted);font-size:13px;line-height:1.65;margin:8px 0 0}
+.about-side{display:grid;gap:18px}
+
+.skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.skill{
+  border:1px solid var(--line);border-radius:18px;padding:22px;background:var(--card);
+  min-height:150px;position:relative;overflow:hidden;
+}
+.skill:after{content:"";position:absolute;width:80px;height:80px;border-radius:50%;right:-30px;bottom:-35px;background:rgba(255,138,42,.09)}
+.skill-num{font:500 11px "DM Mono",monospace;color:var(--accent)}
+.skill h3{margin:35px 0 7px;font-size:19px}
+.skill p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}
+
+.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.project{
+  border:1px solid var(--line);border-radius:20px;padding:24px;background:var(--card);
+  min-height:215px;display:flex;flex-direction:column;justify-content:space-between;
+}
+.project:hover{border-color:#57483b}
+.project-top{display:flex;justify-content:space-between;color:var(--muted);font:500 11px "DM Mono",monospace}
+.project h3{font-size:24px;margin:28px 0 9px}
+.project p{color:var(--muted);font-size:13px;line-height:1.65}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{font:400 10px "DM Mono",monospace;border:1px solid var(--line);padding:6px 8px;border-radius:999px;color:#c1b5a6}
+
+.timeline{display:grid;gap:0}
+.timeline-item{
+  display:grid;grid-template-columns:170px 1fr;gap:35px;padding:27px 0;border-top:1px solid var(--line)
+}
+.timeline-item:last-child{border-bottom:1px solid var(--line)}
+.date{font:500 11px "DM Mono",monospace;color:var(--accent);padding-top:5px}
+.timeline-item h3{margin:0;font-size:21px}
+.timeline-item p{color:var(--muted);font-size:13px;line-height:1.7;max-width:700px}
+
+.contact{
+  padding:65px 0 55px;text-align:center;
+}
+.contact h2{font-size:clamp(48px,8vw,100px);letter-spacing:-.065em;margin:12px 0 16px}
+.contact p{color:var(--muted);max-width:500px;margin:auto;line-height:1.7}
+.contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:28px}
+.contact-note{margin-top:22px;font:500 11px "DM Mono",monospace;color:#75695d}
+
+footer{border-top:1px solid var(--line);padding:25px 0 35px;color:#75695d;font:400 10px "DM Mono",monospace;display:flex;justify-content:space-between}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding-top:120px}
+  .identity{max-width:560px}
+  .skill-grid{grid-template-columns:repeat(2,1fr)}
+  .project-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .wrap{width:min(100% - 30px,var(--max))}
+  .navlinks{display:none}
+  h1{font-size:78px}
+  .hero{padding-top:100px}
+  .identity{transform:none}
+  .about-grid{grid-template-columns:1fr}
+  .skill-grid{grid-template-columns:1fr}
+  .timeline-item{grid-template-columns:1fr;gap:5px}
+  footer{display:block;line-height:2}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="wordmark" href="#top">sxpq</a>
+    <nav class="navlinks">
+      <a href="#about">about</a>
+      <a href="#skills">skills</a>
+      <a href="#projects">projects</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div class="hero-copy">
+      <div class="kicker"><span class="dot"></span> beginner developer · austria</div>
+      <h1>sxpq</h1>
+      <div class="hero-title">Learning to turn <span>Java</span> into things people can actually play.</div>
+      <p class="hero-text">
+        I'm a 14-year-old beginner developer from Austria with Serbian and Austrian roots.
+        I'm currently learning Java and Minecraft development, experimenting with plugins,
+        systems and small projects while building my skills one project at a time.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#projects">See my work ↓</a>
+        <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗</a>
+      </div>
+    </div>
+
+    <aside class="identity">
+      <div class="id-top">
+        <div class="monogram">SX</div>
+        <div class="stamp">PROFILE / 2026</div>
+      </div>
+      <div>
+        <h2>sxpq</h2>
+        <div class="role">JAVA + MINECRAFT / BEGINNER</div>
+      </div>
+      <div class="id-list">
+        <div class="id-row"><span>age</span><strong>14</strong></div>
+        <div class="id-row"><span>background</span><strong>Serbian × Austrian</strong></div>
+        <div class="id-row"><span>learning</span><strong>Java</strong></div>
+        <div class="id-row"><span>focus</span><strong>Minecraft development</strong></div>
+      </div>
+      <div class="id-foot"><span>STATUS</span><span>LEARNING / BUILDING</span></div>
+    </aside>
+  </div>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-label">01 / about me</div>
+      <div class="section-head">
+        <h2>Still learning.<br>Already building.</h2>
+        <p>This is a personal developer CV — simple, honest and focused on progress rather than pretending to be an expert.</p>
+      </div>
+      <div class="about-grid">
+        <div class="big-card">
+          <p>
+            Hey, I'm <em>sxpq</em>. I'm 14 and getting into programming.
+            Right now I'm mainly learning <em>Java</em> and exploring how Minecraft
+            plugins and server systems work. My goal is to keep making projects,
+            understand how things work under the hood and eventually become a really
+            good developer.
+          </p>
+        </div>
+        <div class="about-side">
+          <div class="small-card">
+            <div>
+              <h3>Roots</h3>
+              <p>I'm half Serbian and half Austrian. I was born in Austria and have both cultures as part of who I am.</p>
+            </div>
+          </div>
+          <div class="small-card">
+            <div>
+              <h3>What I'm working toward</h3>
+              <p>Better Java fundamentals → Minecraft plugins → larger systems → open-source projects.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-label">02 / skills</div>
+      <div class="section-head">
+        <h2>What I know<br>so far.</h2>
+        <p>Beginner doesn't mean empty. These are the areas I'm actively learning and practicing.</p>
+      </div>
+      <div class="skill-grid">
+        <article class="skill"><div class="skill-num">01</div><h3>Java</h3><p>Beginner level. Learning syntax, OOP, classes, methods, collections and how to structure projects.</p></article>
+        <article class="skill"><div class="skill-num">02</div><h3>Minecraft</h3><p>Interested in plugin development, custom mechanics, commands and server-side systems.</p></article>
+        <article class="skill"><div class="skill-num">03</div><h3>Git / GitHub</h3><p>Learning how to keep projects organized, track changes and share code publicly.</p></article>
+        <article class="skill"><div class="skill-num">04</div><h3>Problem solving</h3><p>Debugging, searching for solutions and learning by actually building things.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-label">03 / projects</div>
+      <div class="section-head">
+        <h2>Things I've<br>been making.</h2>
+        <p>Swap these cards for your real repositories as you build them. Honest progress looks better than fake experience.</p>
+      </div>
+      <div class="project-grid">
+        <article class="project">
+          <div>
+            <div class="project-top"><span>PROJECT 001</span><span>IN PROGRESS</span></div>
+            <h3>First Java Project</h3>
+            <p>A place for your first proper Java project. Explain what you learned, what you built and what you want to improve next.</p>
+          </div>
+          <div class="tags"><span class="tag">Java</span><span class="tag">Beginner</span></div>
+        </article>
+        <article class="project">
+          <div>
+            <div class="project-top"><span>PROJECT 002</span><span>IDEA</span></div>
+            <h3>Minecraft Plugin</h3>
+            <p>Your future Minecraft plugin. Add the GitHub repository here once you've got something you're proud of.</p>
+          </div>
+          <div class="tags"><span class="tag">Minecraft</span><span class="tag">Paper</span><span class="tag">Java</span></div>
+        </article>
+        <article class="project">
+          <div>
+            <div class="project-top"><span>PROJECT 003</span><span>COMING SOON</span></div>
+            <h3>Open Source</h3>
+            <p>Use this slot for a public project, useful tool or contribution. Let the code show how you're improving.</p>
+          </div>
+          <div class="tags"><span class="tag">GitHub</span><span class="tag">Open source</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-label">04 / experience</div>
+      <div class="section-head">
+        <h2>No fake jobs.<br>Just real progress.</h2>
+        <p>As a beginner, your learning journey is experience too. Add actual roles, servers or collaborations here when you have them.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="date">CURRENT</div>
+          <div><h3>Learning Java</h3><p>Building a foundation in Java and practicing by creating small programs and experiments.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="date">CURRENT</div>
+          <div><h3>Exploring Minecraft Development</h3><p>Learning how Minecraft plugins work and working toward creating useful and fun server-side features.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="date">NEXT</div>
+          <div><h3>First Public Release</h3><p>Goal: finish a small project, publish it on GitHub and use feedback to make the next one better.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="section-label">05 / contact</div>
+      <h2>Say hello.</h2>
+      <p>Want to talk about Minecraft, coding or a project? Discord is the easiest way to reach me.</p>
+      <div class="contact-links">
+        <a class="btn primary" id="discordLink" href="https://discord.com/users/REPLACE_WITH_DISCORD_ID" target="_blank" rel="noreferrer">Discord · sxpq_ ↗</a>
+        <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗</a>
+        <span class="btn" style="cursor:default">sx pqdev106@gmail.com</span>
+      </div>
+      
+      <div id="discord-card" style="max-width:520px;margin:22px auto 0;padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:rgba(0,0,0,.14);text-align:left;display:none">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div id="discord-avatar" style="width:42px;height:42px;border-radius:50%;background:#5b4638;overflow:hidden;flex:none"></div>
+          <div style="min-width:0">
+            <div id="discord-name" style="font-weight:700">sxpq_</div>
+            <div id="discord-status" style="font:500 10px 'DM Mono',monospace;color:var(--muted)">CHECKING STATUS…</div>
+          </div>
+        </div>
+        <div id="discord-activity" style="margin-top:10px;color:var(--muted);font-size:12px"></div>
+      </div>
+<div class="contact-note">Discord activity can be connected with your Discord User ID</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;width:min(var(--max),calc(100% - 48px));margin:auto">
+    <span>© 2026 sxpq</span>
+    <span>BUILT WITH HTML + CSS</span>
+  </div>
+</footer>
+
+<script>
+/*
+  DISCORD ACTIVITY:
+  Put your numeric Discord User ID below.
+  Discord username "sxpq_" alone is not enough for the API.
+  Lanyard provides presence/activity data for users who are using it.
+*/
+const DISCORD_ID = "1178405318758244453";
+
+async function loadDiscord() {
+  const card = document.getElementById("discord-card");
+  const avatar = document.getElementById("discord-avatar");
+  const name = document.getElementById("discord-name");
+  const status = document.getElementById("discord-status");
+  const activity = document.getElementById("discord-activity");
+  const link = document.getElementById("discordLink");
+
+  if (!DISCORD_ID || DISCORD_ID.includes("REPLACE")) return;
+
+  link.href = "https://discord.com/users/" + DISCORD_ID;
+
+  try {
+    const res = await fetch("https://api.lanyard.rest/v1/users/" + DISCORD_ID);
+    const json = await res.json();
+    if (!json.success) return;
+
+    const d = json.data;
+    const u = d.discord_user || {};
+    const display = u.global_name || u.username || "sxpq_";
+    name.textContent = display;
+    status.textContent = (d.discord_status || "offline").toUpperCase();
+
+    if (u.avatar) {
+      const ext = u.avatar.startsWith("a_") ? "gif" : "png";
+      avatar.innerHTML = '<img src="https://cdn.discordapp.com/avatars/' +
+        DISCORD_ID + '/' + u.avatar + '.' + ext + '?size=128" alt="" style="width:100%;height:100%;object-fit:cover">';
+    }
+
+    if (d.activities && d.activities.length) {
+      const a = d.activities.find(x => x.type === 0) || d.activities[0];
+      activity.textContent = a.name + (a.details ? " · " + a.details : "");
+    } else {
+      activity.textContent = "No current activity";
+    }
+
+    card.style.display = "block";
+  } catch (e) {
+    // Keep the CV working even if Discord/Lanyard is unavailable.
+  }
+}
+loadDiscord();
+</script>
+
+</body>
+</html>
